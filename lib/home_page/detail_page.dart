@@ -1,4 +1,5 @@
 import 'package:details_page/models/details_slider_page.dart';
+import 'package:details_page/models/list_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -26,17 +27,19 @@ class _DetailPageState extends State<DetailPage> {
     _width = MediaQuery.of(context).size.width;
     _height = MediaQuery.of(context).size.width;
     return Scaffold(
-        appBar: getAppBar(),
-        body: SingleChildScrollView(
-            padding: EdgeInsets.only(left: 16.0, right: 16.0),
-            physics: const AlwaysScrollableScrollPhysics(),
-            scrollDirection: Axis.vertical,
-            child: ConstrainedBox(
-              constraints: BoxConstraints(
-                maxWidth: MediaQuery.of(context).size.height,
-              ),
-              child: getBody(),
-            )));
+      appBar: getAppBar(),
+      body: SingleChildScrollView(
+          padding: EdgeInsets.only(left: 16.0, right: 16.0),
+          physics: const AlwaysScrollableScrollPhysics(),
+          scrollDirection: Axis.vertical,
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              maxWidth: MediaQuery.of(context).size.height,
+            ),
+            child: getBody(),
+          )),
+      bottomNavigationBar: getBottomNavBar(),
+    );
   }
 
   AppBar getAppBar() {
@@ -75,7 +78,7 @@ class _DetailPageState extends State<DetailPage> {
 
   Column getBody() {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      const DetailsSliderPage(),
+      DetailsSliderPage(),
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Column(
@@ -165,12 +168,9 @@ class _DetailPageState extends State<DetailPage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  IconButton(
-                    onPressed: () {},
-                    icon: SvgPicture.asset(
-                      'assets/icons/korzinka.svg',
-                      color: Colors.white,
-                    ),
+                  SvgPicture.asset(
+                    'assets/icons/korzinka.svg',
+                    color: Colors.white,
                   ),
                   const SizedBox(
                     width: 12.13,
@@ -267,7 +267,11 @@ Apple iPhone 13 Pro Max оснащен передовыми технология
               'Вместе с этим товаром покупают',
               style:
                   GoogleFonts.roboto(fontSize: 16, fontWeight: FontWeight.w700),
-            )
+            ),
+            SizedBox(height: 18),
+           getItemList(),
+            SizedBox(height: 16),
+            Container(height: 36, color: Color(0xffF6F8FA)),
           ],
         ),
       ),
@@ -344,12 +348,197 @@ Apple iPhone 13 Pro Max оснащен передовыми технология
   }
 
   getBottomNavBar() {
-    return BottomNavigationBar(items: [
-      BottomNavigationBarItem(
-        icon: SvgPicture.asset('assets/icons/dona_korzinka.svg'),
+    return SafeArea(
+      child: Container(
+        padding: EdgeInsets.only(
+            left: 16.17, top: 12.54, bottom: 12.01, right: 16.5),
+        decoration: BoxDecoration(color: Colors.green),
+        height: 40,
+        child: Row(
+          children: [
+            SvgPicture.asset(
+              'assets/icons/dona_korzinka.svg',
+              color: Colors.white,
+              height: 15.45,
+              width: 12.67,
+            ),
+            SizedBox(width: 7.17),
+            Text(
+              '0 Dona',
+              style: GoogleFonts.roboto(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w700,
+                  color: Colors.white),
+            ),
+            Spacer(),
+            Text(
+              '12 023 000 so’m',
+              style: GoogleFonts.roboto(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.white),
+            )
+          ],
+        ),
       ),
+    );
+  }
 
-    ]);
+  getItems() {
+    return Container(
+        // padding: EdgeInsets.only(left: 12, right: 16),
+        height: 278,
+        width: 167,
+        decoration: BoxDecoration(
+            color: Colors.white,
+            border: Border.all(
+                color: Color(0xffEFF3F8),
+                width: 0.45,
+                style: BorderStyle.solid)),
+        child: Column(
+          children: [
+            Container(
+              height: 151,
+              width: 151,
+              decoration: const BoxDecoration(
+                  image: DecorationImage(
+                      image:
+                          NetworkImage('http://source.unsplash.com/random/1'),
+                      fit: BoxFit.cover)),
+              child: Stack(
+                children: [
+                  Positioned(
+                    top: 8.24,
+                    left: 12,
+                    child: Container(
+                      alignment: Alignment.center,
+                      width: 37.48,
+                      height: 22.52,
+                      decoration: BoxDecoration(
+                          color: Colors.red,
+                          borderRadius: BorderRadius.circular(5.11)),
+                      child: Text(
+                        '-20%',
+                        style: GoogleFonts.lato(
+                            fontSize: 11.93,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: 8),
+            Padding(
+                padding: EdgeInsets.only(left: 12, right: 16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Защитное стекло Whitestone Dome glass для',
+                        style: GoogleFonts.roboto(
+                            fontSize: 10.72,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400),
+                        maxLines: 2,
+                        textAlign: TextAlign.start),
+                    const SizedBox(height: 6),
+                    Text(
+                      '12 023 000 so’m',
+                      style: GoogleFonts.roboto(
+                          fontSize: 12.51,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.black),
+                    ),
+                    SizedBox(height: 7),
+                    Row(
+                      children: [
+                        RatingBar.builder(
+                          itemSize: 15,
+                          initialRating: 0.5,
+                          minRating: 0.5,
+                          direction: Axis.horizontal,
+                          allowHalfRating: true,
+                          itemCount: 1,
+                          itemPadding:
+                              const EdgeInsets.symmetric(horizontal: 4.0),
+                          itemBuilder: (context, _) => const Icon(
+                            Icons.star,
+                            color: Colors.amber,
+                          ),
+                          onRatingUpdate: (rating) {},
+                        ),
+                        SizedBox(width: 5.24),
+                        Text(
+                          '(34)',
+                          style: GoogleFonts.lato(
+                              fontSize: 10,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.black),
+                        ),
+                        const SizedBox(
+                          width: 8,
+                        ),
+                        const Text(
+                          "12 023 000 so’m",
+                          style: TextStyle(
+                              decoration: TextDecoration.lineThrough,
+                              fontSize: 10),
+                        ),
+                        SizedBox(height: 7),
+                      ],
+                    ),
+                    ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        fixedSize: Size(143, 30),
+                        primary: Color(0xffF6F8FA),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(6.0),
+                        ),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SvgPicture.asset(
+                            'assets/icons/korzinka.svg',
+                            height: 14,
+                            width: 13.2,
+                            color: Colors.black,
+                          ),
+                          const SizedBox(
+                            width: 12.13,
+                          ),
+                          Expanded(
+                            child: Text(
+                              'Savatchaga',
+                              style: GoogleFonts.lato(
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.black),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ))
+          ],
+        ));
+  }
+
+   getItemList() {
+    return Expanded(
+      child: SizedBox(width: 375,
+      height: 278,
+      child: ListView.builder(
+        itemBuilder: (context, index) {
+          return getItems();
+        },
+        itemCount: 10,
+        scrollDirection: Axis.horizontal,
+        shrinkWrap: true,
+      )),
+    );
   }
 }
-

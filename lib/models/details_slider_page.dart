@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:details_page/models/list_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -18,9 +19,9 @@ class _DetailsSliderPageState extends State<DetailsSliderPage> {
   final CarouselController _controller = CarouselController();
 
   final imageList = [
-    'https://unsplash.com/photos/8l9VxXI28tY.jpg',
-    'https://unsplash.com/photos/-haAxbjiHds.jpg',
-    'https://unsplash.com/photos/JYGnB9gTCls.jpg'
+    'https://source.unsplash.com/random/1',
+    'https://source.unsplash.com/random/2',
+    'https://source.unsplash.com/random/3',
   ];
 
   double? screenWidth;
@@ -37,7 +38,8 @@ class _DetailsSliderPageState extends State<DetailsSliderPage> {
         .width;
     return Column(children: [
       SizedBox(
-        child: CarouselSlider.builder(
+        child:
+        CarouselSlider.builder(
           carouselController: _controller,
           itemCount: 15,
           itemBuilder:
@@ -50,7 +52,7 @@ class _DetailsSliderPageState extends State<DetailsSliderPage> {
                     .size
                     .width,
                 margin: const EdgeInsets.symmetric(horizontal: 6.92),
-                child: Text(itemIndex.toString()),
+              //  child: Text(itemIndex.toString()),
               ),
           options: CarouselOptions(
             height: 280,
@@ -67,43 +69,44 @@ class _DetailsSliderPageState extends State<DetailsSliderPage> {
           ),
         ),
       ),
-      SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: List.generate(
-              12,
-                  (index) =>
-                  GestureDetector(
-                    onTap: () {
-                      _controller.animateToPage(index);
-                      setState(() {
-                        _current = index;
-                      });
-                    },
-                    child: Row(
-                      children: [
-                        Icon(CupertinoIcons.back),
-                        Container(
-                          width: 64.0,
-                          height: 64.0,
-                          margin: const EdgeInsets.symmetric(
-                              vertical: 8.0, horizontal: 4.0),
-                          decoration: BoxDecoration(
-                              color: (Theme
-                                  .of(context)
-                                  .brightness ==
-                                  Brightness.dark
-                                  ? Colors.white
-                                  : Colors.black)
-                                  .withOpacity(_current == index ? 0.9 : 0.4)),
-                        ),
-                        Icon(CupertinoIcons.forward),
-                      ],
-                    ),
-                  )),
-        ),
-      )
+      ListWidget(),
+      // SingleChildScrollView(
+      //   scrollDirection: Axis.horizontal,
+      //   child: Row(
+      //     mainAxisAlignment: MainAxisAlignment.center,
+      //     children: List.generate(
+      //         12,
+      //             (index) =>
+      //             GestureDetector(
+      //               onTap: () {
+      //                 _controller.animateToPage(index);
+      //                 setState(() {
+      //                   _current = index;
+      //                 });
+      //               },
+      //               child: Row(
+      //                 children: [
+      //                   Icon(CupertinoIcons.back),
+      //                   Container(
+      //                     width: 64.0,
+      //                     height: 64.0,
+      //                     margin: const EdgeInsets.symmetric(
+      //                         vertical: 8.0, horizontal: 4.0),
+      //                     decoration: BoxDecoration(
+      //                         color: (Theme
+      //                             .of(context)
+      //                             .brightness ==
+      //                             Brightness.dark
+      //                             ? Colors.white
+      //                             : Colors.black)
+      //                             .withOpacity(_current == index ? 0.9 : 0.4)),
+      //                   ),
+      //                   Icon(CupertinoIcons.forward),
+      //                 ],
+      //               ),
+      //             )),
+      //   ),
+      // )
     ]);
   }
 
