@@ -269,9 +269,19 @@ Apple iPhone 13 Pro Max оснащен передовыми технология
                   GoogleFonts.roboto(fontSize: 16, fontWeight: FontWeight.w700),
             ),
             SizedBox(height: 18),
-           getItemList(),
+            getItemList(),
             SizedBox(height: 16),
             Container(height: 36, color: Color(0xffF6F8FA)),
+            SizedBox(height: 16),
+            Text(
+              'Похожие товары (16)',
+              style: GoogleFonts.roboto(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                  color: Colors.black),
+            ),
+            SizedBox(height: 18),
+            getItemList(),
           ],
         ),
       ),
@@ -527,18 +537,17 @@ Apple iPhone 13 Pro Max оснащен передовыми технология
         ));
   }
 
-   getItemList() {
-    return Expanded(
-      child: SizedBox(width: 375,
-      height: 278,
-      child: ListView.builder(
-        itemBuilder: (context, index) {
-          return getItems();
-        },
-        itemCount: 10,
-        scrollDirection: Axis.horizontal,
-        shrinkWrap: true,
-      )),
-    );
+  getItemList() {
+    return SizedBox(
+        width: 375,
+        height: 278,
+        child: ListView.builder(
+          itemBuilder: (context, index) {
+            return getItems();
+          },
+          itemCount: 10,
+          scrollDirection: Axis.horizontal,
+          shrinkWrap: true,
+        ));
   }
 }

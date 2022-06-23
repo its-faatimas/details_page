@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ListWidget extends StatelessWidget {
@@ -13,7 +14,7 @@ class ListWidget extends StatelessWidget {
         children: [
           IconButton(onPressed: (){
 
-          }, icon: Icon(Icons.arrow_back)),
+          }, icon: Icon(CupertinoIcons.back)),
           Expanded(
             child: PageView(
               controller: _pageController,
@@ -24,7 +25,7 @@ class ListWidget extends StatelessWidget {
               ],
             ),
           ),
-          IconButton(onPressed: (){}, icon: Icon(Icons.arrow_forward)),
+          IconButton(onPressed: (){}, icon: Icon(CupertinoIcons.forward)),
         ],
       ),
     );
