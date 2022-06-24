@@ -6,6 +6,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 
 class DetailPage extends StatefulWidget {
   const DetailPage({Key? key}) : super(key: key);
@@ -15,26 +17,20 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailPageState extends State<DetailPage> {
-  late double _width;
-  late double _height;
   int _current = 0;
   final CarouselController _controller = CarouselController();
 
-  double? screenWidth;
 
   @override
   Widget build(BuildContext context) {
-    _width = MediaQuery.of(context).size.width;
-    _height = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: getAppBar(),
       body: SingleChildScrollView(
-          padding: EdgeInsets.only(left: 16.0, right: 16.0),
           physics: const AlwaysScrollableScrollPhysics(),
           scrollDirection: Axis.vertical,
           child: ConstrainedBox(
             constraints: BoxConstraints(
-              maxWidth: MediaQuery.of(context).size.height,
+              maxWidth: ScreenUtil.defaultSize.height,
             ),
             child: getBody(),
           )),
@@ -49,21 +45,21 @@ class _DetailPageState extends State<DetailPage> {
       title: Text(
         'Batafsil',
         style: GoogleFonts.roboto(
-          fontSize: 20,
+          fontSize: 20.sp,
           fontWeight: FontWeight.w500,
           color: const Color(0xff0A0A0A),
         ),
       ),
       actions: [
-        (SvgPicture.asset(
+        SvgPicture.asset(
           'assets/icons/favorite_border.svg',
-        )),
-        const SizedBox(
-          width: 20.0,
         ),
-        (SvgPicture.asset('assets/icons/share.svg')),
-        const SizedBox(
-          width: 18.0,
+         SizedBox(
+          width: 20.0.sp,
+        ),
+        SvgPicture.asset('assets/icons/share.svg'),
+         SizedBox(
+          width: 18.0.sp,
         ),
       ],
       leading: IconButton(
@@ -79,234 +75,248 @@ class _DetailPageState extends State<DetailPage> {
   Column getBody() {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       DetailsSliderPage(),
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+Padding(
+  padding:  EdgeInsets.symmetric(horizontal: 16.sp),
+  child:   Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Text(
+        'Смартфон Apple iphone 13 Pro Max 512 GB Graphite',
+        style: GoogleFonts.roboto(
+            fontSize: 20.sp,
+            color: Colors.black,
+            fontWeight: FontWeight.w400),
+        maxLines: 2,
+      ),
+       SizedBox(
+        height: 10.h,
+      ),
+      Row(
+        children: [
+          RatingBar.builder(
+            itemSize: 15,
+            initialRating: 3,
+            minRating: 1,
+            direction: Axis.horizontal,
+            allowHalfRating: true,
+            itemCount: 5,
+            itemPadding:  EdgeInsets.symmetric(horizontal: 4.0.sp),
+            itemBuilder: (context, _) => const Icon(
+              Icons.star,
+              color: Colors.amber,
+            ),
+            onRatingUpdate: (rating) {},
+          ),
+          TextButton(
+            onPressed: () {},
+            child: Text(
+              'Fikrlar(34)',
+              style: GoogleFonts.lato(
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.green),
+            ),
+          ),
+         Spacer(),
+          const Text(
+            "26 689 520",
+            style: TextStyle(decoration: TextDecoration.lineThrough),
+          ),
+          SizedBox(width: 2),
+          Text("so'm"),
+        ],
+      ),
+      Row(children: [
+        Text(
+          "18 664 000 so’m",
+          style: GoogleFonts.roboto(
+              fontSize: 24.sp, fontWeight: FontWeight.w700),
+        ),
+        Spacer(),
+         CircleAvatar(
+          radius: 7.5.sm,
+          backgroundColor: Colors.green,
+        ),
+         SizedBox(
+          width: 9.w,
+        ),
+        Text(
+          'Omborda mavjud',
+          style: GoogleFonts.lato(
+              fontSize: 14.sp,
+              fontWeight: FontWeight.w500,
+              color: Colors.black),
+        ),
+      ]),
+       SizedBox(
+        height: 32.h,
+      ),
+      ElevatedButton(
+        onPressed: () {},
+        style: ElevatedButton.styleFrom(
+          primary: Colors.black,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0.sp),
+          ),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              'Смартфон Apple iphone 13 Pro Max 512 GB Graphite',
-              style: GoogleFonts.roboto(
-                  fontSize: 20,
-                  color: Colors.black,
-                  fontWeight: FontWeight.w400),
-              maxLines: 2,
+            SvgPicture.asset(
+              'assets/icons/korzinka.svg',
+              color: Colors.white,
             ),
-            const SizedBox(
-              height: 10,
-            ),
-            Row(
-              children: [
-                RatingBar.builder(
-                  itemSize: 15,
-                  initialRating: 3,
-                  minRating: 1,
-                  direction: Axis.horizontal,
-                  allowHalfRating: true,
-                  itemCount: 5,
-                  itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
-                  itemBuilder: (context, _) => const Icon(
-                    Icons.star,
-                    color: Colors.amber,
-                  ),
-                  onRatingUpdate: (rating) {},
-                ),
-                TextButton(
-                  onPressed: () {},
-                  child: Text(
-                    'Fikrlar(34)',
-                    style: GoogleFonts.lato(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.green),
-                  ),
-                ),
-                const SizedBox(
-                  width: 34,
-                ),
-                const Text(
-                  "26 689 520 so’m",
-                  style: TextStyle(decoration: TextDecoration.lineThrough),
-                )
-              ],
-            ),
-            Row(children: [
-              Text(
-                "18 664 000 so’m",
-                style: GoogleFonts.roboto(
-                    fontSize: 24, fontWeight: FontWeight.w700),
-              ),
-              const SizedBox(
-                width: 31,
-              ),
-              const CircleAvatar(
-                radius: 7.5,
-                backgroundColor: Colors.green,
-              ),
-              const SizedBox(
-                width: 9,
-              ),
-              Text(
-                'Omborda mavjud',
-                style: GoogleFonts.lato(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.black),
-              ),
-            ]),
-            const SizedBox(
-              height: 31.17,
-            ),
-            ElevatedButton(
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(
-                primary: Colors.black,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SvgPicture.asset(
-                    'assets/icons/korzinka.svg',
-                    color: Colors.white,
-                  ),
-                  const SizedBox(
-                    width: 12.13,
-                  ),
-                  Text(
-                    'Savatchaga',
-                    style: GoogleFonts.lato(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.white),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(
-              height: 16.0,
+             SizedBox(
+              width: 12.sp,
             ),
             Text(
-              'Цвет',
-              style: GoogleFonts.roboto(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w700,
-                  color: Colors.black),
+              'Savatchaga',
+              style: GoogleFonts.lato(
+                  fontSize: 16.sp,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.white),
             ),
-            const SizedBox(
-              height: 12,
-            ),
-            Row(
-              children: [
-                getColors(const Color(0xff576755), 'Alpine Green'),
-                const SizedBox(
-                  width: 6,
-                ),
-                getColors(const Color(0xffF2F3EE), 'Silver'),
-                const SizedBox(
-                  width: 6,
-                ),
-                getColors(const Color(0xff5D5C56), 'Graphite'),
-                const SizedBox(
-                  width: 6,
-                ),
-                getColors(const Color(0xffADC5DB), 'Sierra Blue'),
-              ],
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            getDeliveryTime(),
-            SizedBox(
-              height: 16,
-            ),
-            Text(
-              'Описание',
-              style: GoogleFonts.roboto(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w700,
-                  color: Colors.black),
-            ),
-            SizedBox(height: 16),
-            RichText(
-                text: TextSpan(
-                    text: """Смартфон Apple iPhone 13 Pro Max 512 GB Graphite
-Apple iPhone 13 Pro Max оснащен передовыми технологиями, значительно расширяющими функциональные возможности девайса. На тыльной стороне девайса расположен инновационный""",
-                    style: GoogleFonts.roboto(
-                        fontSize: 14,
-                        height: 1.25,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.black))),
-            SizedBox(
-              height: 16.0,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Основные характеристики',
-                  style: GoogleFonts.roboto(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.black),
-                ),
-                IconButton(
-                  icon: Icon(CupertinoIcons.forward),
-                  onPressed: () {},
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 15.0,
-            ),
-            Container(height: 36, color: Color(0xffF6F8FA)),
-            SizedBox(height: 16),
-            Text(
-              'Вместе с этим товаром покупают',
-              style:
-                  GoogleFonts.roboto(fontSize: 16, fontWeight: FontWeight.w700),
-            ),
-            SizedBox(height: 18),
-            getItemList(),
-            SizedBox(height: 16),
-            Container(height: 36, color: Color(0xffF6F8FA)),
-            SizedBox(height: 16),
-            Text(
-              'Похожие товары (16)',
-              style: GoogleFonts.roboto(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w700,
-                  color: Colors.black),
-            ),
-            SizedBox(height: 18),
-            getItemList(),
           ],
         ),
+      ),
+       SizedBox(
+        height: 16.0.h,
+      ),
+      Text(
+        'Цвет',
+        style: GoogleFonts.roboto(
+            fontSize: 16.sp,
+            fontWeight: FontWeight.w700,
+            color: Colors.black),
+      ),
+       SizedBox(
+        height: 12.h,
+      ),
+      SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          children: [
+            getColors(const Color(0xff576755), 'Alpine Green'),
+             SizedBox(
+              width: 6.w,
+            ),
+            getColors(const Color(0xffF2F3EE), 'Silver'),
+             SizedBox(
+              width: 6.w,
+            ),
+            getColors(const Color(0xff5D5C56), 'Graphite'),
+             SizedBox(
+              width: 6.w,
+            ),
+            getColors(const Color(0xffADC5DB), 'Sierra Blue'),
+          ],
+        ),
+      ),
+       SizedBox(
+        height: 16.h,
+      ),
+      getDeliveryTime(),
+      SizedBox(
+        height: 16.h,
+      ),
+      Text(
+        'Описание',
+        style: GoogleFonts.roboto(
+            fontSize: 16.sp,
+            fontWeight: FontWeight.w700,
+            color: Colors.black),
+      ),
+      SizedBox(height: 16.h),
+      RichText(
+          text: TextSpan(
+              text: """Смартфон Apple iPhone 13 Pro Max 512 GB Graphite
+Apple iPhone 13 Pro Max оснащен передовыми технологиями, значительно расширяющими функциональные возможности девайса. На тыльной стороне девайса расположен инновационный""",
+              style: GoogleFonts.roboto(
+                  fontSize: 14.sp,
+                  height: 1.25.h,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.black))),
+      SizedBox(
+        height: 16.0.h,
+      ),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            'Основные характеристики',
+            style: GoogleFonts.roboto(
+                fontSize: 16.sp,
+                fontWeight: FontWeight.w700,
+                color: Colors.black),
+          ),
+          IconButton(
+            icon: Icon(CupertinoIcons.forward),
+            onPressed: () {},
+          ),
+        ],
+      ),
+      SizedBox(
+        height: 15.0.h,
+      ),
+      Container(height: 36.h, color: Color(0xffF6F8FA)),
+      SizedBox(height: 16.h),
+    ],
+  ),
+),
+          Padding(
+            padding:  EdgeInsets.symmetric(horizontal: 16.sp),
+            child: Text(
+              'Вместе с этим товаром покупают',
+              style:
+                  GoogleFonts.roboto(fontSize: 16.sp, fontWeight: FontWeight.w700),
+            ),
+          ),
+          SizedBox(height: 18.h),
+          getItemList(),
+          SizedBox(height: 16.h),
+          Container(height: 36.h, color: Color(0xffF6F8FA)),
+          SizedBox(height: 16.h),
+          Padding(
+            padding:  EdgeInsets.symmetric(horizontal: 16.sp),
+            child: Text(
+              'Похожие товары (16)',
+              style: GoogleFonts.roboto(
+                  fontSize: 16.sp,
+                  fontWeight: FontWeight.w700,
+                  color: Colors.black),
+            ),
+          ),
+          SizedBox(height: 18.h),
+          getItemList(),
+                    SizedBox(height: 16.h),
+
+        ],
       ),
     ]);
   }
 
   getColors(Color color, String text) {
     return Container(
-      height: 61,
-      width: 80,
+      height: 62.h,
+      width: 80.w,
       decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(12.sp),
           border: Border.all(
-              color: Colors.grey.shade300, style: BorderStyle.solid, width: 1)),
+              color: Colors.grey.shade300, style: BorderStyle.solid, width: 1.w)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           CircleAvatar(
-            radius: 12,
+            radius: 12.sp,
             backgroundColor: color,
           ),
           Text(
             text,
-            style: GoogleFonts.lato(fontSize: 10, fontWeight: FontWeight.w400),
+            style: GoogleFonts.lato(fontSize: 10.sp, fontWeight: FontWeight.w400),
           )
         ],
       ),
@@ -315,13 +325,12 @@ Apple iPhone 13 Pro Max оснащен передовыми технология
 
   getDeliveryTime() {
     return Container(
-      padding: const EdgeInsets.only(left: 8, top: 11, bottom: 11),
+      padding:  EdgeInsets.symmetric(horizontal: 8.sp, vertical: 11.sp),
       // margin: EdgeInsets.only(left: 16, right: 16),
-      height: 64,
-      width: 343,
+      height: 64.h,
       decoration: BoxDecoration(
         color: const Color(0xffE1F5E9),
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(12.sp),
       ),
       child: Row(
         children: [
@@ -330,7 +339,7 @@ Apple iPhone 13 Pro Max оснащен передовыми технология
             child: SvgPicture.asset('assets/icons/flag.svg'),
           ),
           SizedBox(
-            width: 12,
+            width: 12.w,
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -338,17 +347,17 @@ Apple iPhone 13 Pro Max оснащен передовыми технология
               Text(
                 'O’zbekiston bo’ylab yetkazib berish:',
                 style: GoogleFonts.roboto(
-                    fontSize: 14,
+                    fontSize: 14.sp,
                     fontWeight: FontWeight.w700,
                     color: Color(0xff0D1136)),
               ),
               SizedBox(
-                height: 5,
+                height: 5.h,
               ),
               Text(
                 '14 ish kuni',
                 style:
-                    GoogleFonts.lato(fontSize: 15, fontWeight: FontWeight.w500),
+                    GoogleFonts.lato(fontSize: 15.sp, fontWeight: FontWeight.w500),
               ),
             ],
           )
@@ -360,23 +369,22 @@ Apple iPhone 13 Pro Max оснащен передовыми технология
   getBottomNavBar() {
     return SafeArea(
       child: Container(
-        padding: EdgeInsets.only(
-            left: 16.17, top: 12.54, bottom: 12.01, right: 16.5),
+        padding: EdgeInsets.symmetric(vertical: 12.sp, horizontal: 16.sp),
         decoration: BoxDecoration(color: Colors.green),
-        height: 40,
+        height: 48.h,
         child: Row(
           children: [
             SvgPicture.asset(
               'assets/icons/dona_korzinka.svg',
               color: Colors.white,
-              height: 15.45,
-              width: 12.67,
+              height: 16.h,
+              width: 12.w,
             ),
-            SizedBox(width: 7.17),
+            SizedBox(width: 8.w),
             Text(
               '0 Dona',
               style: GoogleFonts.roboto(
-                  fontSize: 12,
+                  fontSize: 12.sp,
                   fontWeight: FontWeight.w700,
                   color: Colors.white),
             ),
@@ -384,7 +392,7 @@ Apple iPhone 13 Pro Max оснащен передовыми технология
             Text(
               '12 023 000 so’m',
               style: GoogleFonts.roboto(
-                  fontSize: 18,
+                  fontSize: 18.sp,
                   fontWeight: FontWeight.w400,
                   color: Colors.white),
             )
@@ -397,19 +405,19 @@ Apple iPhone 13 Pro Max оснащен передовыми технология
   getItems() {
     return Container(
         // padding: EdgeInsets.only(left: 12, right: 16),
-        height: 278,
-        width: 167,
+        height: 278.h,
+        width: 168.w,
         decoration: BoxDecoration(
             color: Colors.white,
             border: Border.all(
                 color: Color(0xffEFF3F8),
-                width: 0.45,
+                width: 0.45.w,
                 style: BorderStyle.solid)),
         child: Column(
           children: [
             Container(
-              height: 151,
-              width: 151,
+              height: 152.h,
+              width: 152.h,
               decoration: const BoxDecoration(
                   image: DecorationImage(
                       image:
@@ -422,15 +430,15 @@ Apple iPhone 13 Pro Max оснащен передовыми технология
                     left: 12,
                     child: Container(
                       alignment: Alignment.center,
-                      width: 37.48,
-                      height: 22.52,
+                      width: 38.w,
+                      height: 24.h,
                       decoration: BoxDecoration(
                           color: Colors.red,
                           borderRadius: BorderRadius.circular(5.11)),
                       child: Text(
                         '-20%',
                         style: GoogleFonts.lato(
-                            fontSize: 11.93,
+                            fontSize: 12.sp,
                             fontWeight: FontWeight.w400,
                             color: Colors.white),
                       ),
@@ -439,7 +447,7 @@ Apple iPhone 13 Pro Max оснащен передовыми технология
                 ],
               ),
             ),
-            SizedBox(height: 8),
+            SizedBox(height: 8.h),
             Padding(
                 padding: EdgeInsets.only(left: 12, right: 16),
                 child: Column(
@@ -447,20 +455,20 @@ Apple iPhone 13 Pro Max оснащен передовыми технология
                   children: [
                     Text('Защитное стекло Whitestone Dome glass для',
                         style: GoogleFonts.roboto(
-                            fontSize: 10.72,
+                            fontSize: 11.sp,
                             color: Colors.black,
                             fontWeight: FontWeight.w400),
                         maxLines: 2,
                         textAlign: TextAlign.start),
-                    const SizedBox(height: 6),
+                     SizedBox(height: 6.h),
                     Text(
                       '12 023 000 so’m',
                       style: GoogleFonts.roboto(
-                          fontSize: 12.51,
+                          fontSize: 13.sp,
                           fontWeight: FontWeight.w700,
                           color: Colors.black),
                     ),
-                    SizedBox(height: 7),
+                    SizedBox(height: 8.h),
                     Row(
                       children: [
                         RatingBar.builder(
@@ -471,40 +479,40 @@ Apple iPhone 13 Pro Max оснащен передовыми технология
                           allowHalfRating: true,
                           itemCount: 1,
                           itemPadding:
-                              const EdgeInsets.symmetric(horizontal: 4.0),
+                               EdgeInsets.symmetric(horizontal: 4.0.sp),
                           itemBuilder: (context, _) => const Icon(
                             Icons.star,
                             color: Colors.amber,
                           ),
                           onRatingUpdate: (rating) {},
                         ),
-                        SizedBox(width: 5.24),
+                        SizedBox(width: 6.w),
                         Text(
                           '(34)',
                           style: GoogleFonts.lato(
-                              fontSize: 10,
+                              fontSize: 10.sp,
                               fontWeight: FontWeight.w400,
                               color: Colors.black),
                         ),
-                        const SizedBox(
-                          width: 8,
+                         SizedBox(
+                          width: 8.w,
                         ),
-                        const Text(
+                         Text(
                           "12 023 000 so’m",
                           style: TextStyle(
                               decoration: TextDecoration.lineThrough,
-                              fontSize: 10),
+                              fontSize: 10.sp),
                         ),
-                        SizedBox(height: 7),
+                        SizedBox(height: 8.h),
                       ],
                     ),
                     ElevatedButton(
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
-                        fixedSize: Size(143, 30),
+                        fixedSize: Size(144.w, 30.h),
                         primary: Color(0xffF6F8FA),
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(6.0),
+                          borderRadius: BorderRadius.circular(6.0.sp),
                         ),
                       ),
                       child: Row(
@@ -512,18 +520,18 @@ Apple iPhone 13 Pro Max оснащен передовыми технология
                         children: [
                           SvgPicture.asset(
                             'assets/icons/korzinka.svg',
-                            height: 14,
-                            width: 13.2,
+                            height: 14.h,
+                            width: 14.w,
                             color: Colors.black,
                           ),
-                          const SizedBox(
-                            width: 12.13,
+                           SizedBox(
+                            width: 13.w,
                           ),
                           Expanded(
                             child: Text(
                               'Savatchaga',
                               style: GoogleFonts.lato(
-                                  fontSize: 13,
+                                  fontSize: 13.sp,
                                   fontWeight: FontWeight.w400,
                                   color: Colors.black),
                             ),
@@ -539,13 +547,13 @@ Apple iPhone 13 Pro Max оснащен передовыми технология
 
   getItemList() {
     return SizedBox(
-        width: 375,
-        height: 278,
+        height: 278.h,
         child: ListView.builder(
           itemBuilder: (context, index) {
             return getItems();
           },
           itemCount: 10,
+          padding: EdgeInsets.symmetric(horizontal: 16.sp),
           scrollDirection: Axis.horizontal,
           shrinkWrap: true,
         ));

@@ -146,6 +146,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.1"
+  flutter_screenutil:
+    dependency: "direct dev"
+    description:
+      name: flutter_screenutil
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.5.3+2"
   flutter_svg:
     dependency: "direct main"
     description:
@@ -326,13 +333,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.27.4"
-  screen_utils:
-    dependency: "direct main"
-    description:
-      name: screen_utils
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.0.1"
   sky_engine:
     dependency: transitive
     description: flutter

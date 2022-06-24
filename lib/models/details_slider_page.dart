@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+
 class DetailsSliderPage extends StatefulWidget {
   const DetailsSliderPage({Key? key}) : super(key: key);
 
@@ -46,16 +47,21 @@ class _DetailsSliderPageState extends State<DetailsSliderPage> {
               (BuildContext context, int itemIndex, int pageViewIndex) =>
               Container(
                 color: Colors.yellow,
-                height: 373,
+                height: MediaQuery
+                    .of(context)
+                    .size
+                    .width,
                 width: MediaQuery
                     .of(context)
                     .size
                     .width,
-                margin: const EdgeInsets.symmetric(horizontal: 6.92),
               //  child: Text(itemIndex.toString()),
               ),
           options: CarouselOptions(
-            height: 280,
+            height: MediaQuery
+                .of(context)
+                .size
+                .width,
             viewportFraction: 1,
             initialPage: 0,
             enableInfiniteScroll: true,
