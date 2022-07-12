@@ -1,4 +1,5 @@
 import 'package:details_page/models/data.dart';
+import 'package:details_page/models/details_slider_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -37,6 +38,7 @@ class _ListWidgetState extends State<ListWidget> {
             onPressed: () {
               if (_currentPage >= 0) {
                 _pageController.jumpToPage(_currentPage - 1);
+                
               }
             },
           ),
@@ -89,7 +91,7 @@ class _ListWidgetState extends State<ListWidget> {
               borderRadius: BorderRadius.circular(6),
               border: Border.all(
                   color: _pageIndex == index
-                      ? Colors.deepOrange
+                      ? Colors.green.shade700
                       : Colors.transparent),
               image: DecorationImage(
                 fit: BoxFit.cover,

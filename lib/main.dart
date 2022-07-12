@@ -1,4 +1,5 @@
 import 'package:details_page/home_page/detail_page.dart';
+import 'package:details_page/pages/catalog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const DetailPage(),
+        home: const CatalogPage(),
       );
     });
   }
