@@ -1,5 +1,6 @@
 import 'package:details_page/home_page/detail_page.dart';
 import 'package:details_page/pages/catalog.dart';
+import 'package:details_page/pages/smartphone_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

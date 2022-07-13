@@ -1,3 +1,4 @@
+import 'package:details_page/pages/filter_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -36,7 +37,10 @@ class _SmartphonePageState extends State<SmartphonePage> {
       ),
       actions: [
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => FilterPage()));
+          },
           icon: SvgPicture.asset(
             'assets/icons/filter.svg',
           ),
@@ -47,27 +51,26 @@ class _SmartphonePageState extends State<SmartphonePage> {
           CupertinoIcons.arrow_left,
           color: Color(0xff0A0A0A),
         ),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pop(context);
+        },
       ),
     );
   }
 
   getBody() {
-    return GridView.count(
-  primary: false,
-  padding: const EdgeInsets.all(20),
-  crossAxisSpacing: 10,
-  mainAxisSpacing: 10,
-  crossAxisCount: 2,
-  scrollDirection: Axis.vertical,
-  children: <Widget>[
-   getItemList(),
-    
- 
-  ],
-);
+    return GridView.custom(
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+      mainAxisExtent: 285.0.w),
+      scrollDirection: Axis.vertical,
+      childrenDelegate: SliverChildListDelegate(
+        [getItems(), getItems(),getItems()],
+      ),
+    );
   }
-   getItems() {
+
+  getItems() {
     return Container(
         // padding: EdgeInsets.only(left: 12, right: 16),
         height: 278.h,
@@ -169,7 +172,8 @@ class _SmartphonePageState extends State<SmartphonePage> {
                                   Center(
                                     child: Padding(
                                       padding: const EdgeInsets.all(8.0),
-                                      child: Center(child: SizedBox(height: 8.h)),
+                                      child:
+                                          Center(child: SizedBox(height: 8.h)),
                                     ),
                                   ),
                                 ],
@@ -227,14 +231,13 @@ class _SmartphonePageState extends State<SmartphonePage> {
   getItemList() {
     return SizedBox(
         height: 295.h,
-        
         child: ListView.builder(
           itemBuilder: (context, index) {
             return getItems();
           },
           itemCount: 10,
           padding: EdgeInsets.symmetric(horizontal: 16.sp),
-          scrollDirection: Axis.horizontal,
+          scrollDirection: Axis.vertical,
           shrinkWrap: true,
         ));
   }

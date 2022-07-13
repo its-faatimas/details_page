@@ -33,7 +33,16 @@ class _CatalogPageState extends State<CatalogPage> {
         'Planshetlar',
         'Planshetlar'
       ],
-      "onPressed": ['']
+      "onPressed": [
+        const SmartphonePage(),
+        const SmartphonePage(),
+        const SmartphonePage(),
+        const SmartphonePage(),
+        const SmartphonePage(),
+        const SmartphonePage(),
+        const SmartphonePage(),
+        const SmartphonePage(),
+      ]
     };
   });
   @override
@@ -50,6 +59,14 @@ class _CatalogPageState extends State<CatalogPage> {
       centerTitle: false,
       backgroundColor: Colors.white,
       elevation: 0,
+      leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(
+            CupertinoIcons.arrow_left,
+            color: Colors.black,
+          )),
       title: Text(
         'Katalog',
         style: GoogleFonts.roboto(
@@ -57,13 +74,6 @@ class _CatalogPageState extends State<CatalogPage> {
           fontWeight: FontWeight.w500,
           color: const Color(0xff0A0A0A),
         ),
-      ),
-      leading: IconButton(
-        icon: const Icon(
-          CupertinoIcons.arrow_left,
-          color: Color(0xff0A0A0A),
-        ),
-        onPressed: () {},
       ),
     );
   }
@@ -77,30 +87,28 @@ class _CatalogPageState extends State<CatalogPage> {
               elevation: 0,
               margin: EdgeInsets.all(0),
               child: ListTile(
-                  title: Text(iconTextPressed[index]['title'][index],
-                      style: GoogleFonts.roboto(
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.w500,
-                          color: Color(0xff0A0A0A))),
-                  leading: CircleAvatar(
-                    radius: 24.r,
-                    backgroundColor: Color(0xffF6F8FA),
-                    child:
-                        SvgPicture.asset(iconTextPressed[index]['icon'][index]),
-                  ),
-                  trailing: IconButton(
-                    icon: Icon(
-                      CupertinoIcons.forward,
-                      color: Colors.black,
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          iconTextPressed[index]['onPressed'][index],
                     ),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const SmartphonePage()),
-                      );
-                    },
-                  )));
+                  );
+                },
+                title: Text(iconTextPressed[index]['title'][index],
+                    style: GoogleFonts.roboto(
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w500,
+                        color: Color(0xff0A0A0A))),
+                leading: CircleAvatar(
+                  radius: 24.r,
+                  backgroundColor: Color(0xffF6F8FA),
+                  child:
+                      SvgPicture.asset(iconTextPressed[index]['icon'][index]),
+                ),
+                trailing: Icon(CupertinoIcons.forward, color: Colors.black),
+              ));
         });
   }
 }
