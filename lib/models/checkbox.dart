@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MyStatefulWidget extends StatefulWidget {
   const MyStatefulWidget({Key? key}) : super(key: key);
@@ -28,7 +30,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
     //   }
 
     return Scaffold(
-      appBar: AppBar(),
+      appBar: getAppBar(),
       body: getExpansionTile(),
     );
   }
@@ -65,13 +67,15 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
 
   getCheckbox() {
     return Card(
-      elevation: 0,
-        margin: EdgeInsets.only(left: 27,),
+        elevation: 0,
+        margin: EdgeInsets.only(
+          left: 27,
+        ),
         color: Colors.white,
         child: Column(
           children: [
             CheckboxListTile(
-selected: false,
+              selected: false,
               activeColor: Colors.transparent,
               side: BorderSide(color: Colors.green.shade900),
               title: Text('All'),
@@ -107,6 +111,30 @@ selected: false,
       style: GoogleFonts.mulish(
         fontSize: 20,
         fontWeight: FontWeight.w700,
+      ),
+    );
+  }
+
+  AppBar getAppBar() {
+    return AppBar(
+      centerTitle: false,
+      backgroundColor: Colors.white,
+      elevation: 0,
+      leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(
+            CupertinoIcons.arrow_left,
+            color: Colors.black,
+          )),
+      title: Text(
+        'Filter',
+        style: GoogleFonts.roboto(
+          fontSize: 20.sp,
+          fontWeight: FontWeight.w500,
+          color: const Color(0xff0A0A0A),
+        ),
       ),
     );
   }
