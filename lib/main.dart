@@ -1,4 +1,5 @@
 import 'package:details_page/home_page/detail_page.dart';
+import 'package:details_page/models/checkbox.dart';
 import 'package:details_page/pages/catalog.dart';
 import 'package:details_page/pages/smartphone_page.dart';
 import 'package:flutter/material.dart';
@@ -20,8 +21,13 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const CatalogPage(),
+        home:  MyStatefulWidget(),
       );
     });
   }
 }
+
+
+
+
+
